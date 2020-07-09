@@ -7,8 +7,8 @@
 //#include "_lsvmc_routine.h"
 
 //#include "opencv2/imgproc.hpp"
-#include "opencv2/imgproc/imgproc_c.h"
-
+// #include "opencv2/imgproc/imgproc_c.h"
+#include <opencv2/imgproc.hpp>
 
 //modified from "_lsvmc_types.h"
 
@@ -83,8 +83,8 @@ typedef struct{
 // RESULT
 // Error status
 */
-int getFeatureMaps(const IplImage * image, const int k, CvLSVMFeatureMapCaskade **map);
-
+// int getFeatureMaps(const IplImage * image, const int k, CvLSVMFeatureMapCaskade **map);
+int getFeatureMaps(const cv::Mat image, const int k, CvLSVMFeatureMapCaskade **map);
 
 /*
 // Feature map Normalization and Truncation 

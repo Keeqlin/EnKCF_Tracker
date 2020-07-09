@@ -14,8 +14,8 @@ using namespace cv::xfeatures2d;
 cv::Mat cameraMotionModel(cv::Mat frame_r, cv::Mat frame_t){
 
   // Convert to GrayScale Imagery
-  cv::cvtColor(frame_r,frame_r, CV_RGB2GRAY);
-  cv::cvtColor(frame_t,frame_t, CV_RGB2GRAY);
+  cv::cvtColor(frame_r,frame_r, COLOR_RGB2GRAY);
+  cv::cvtColor(frame_t,frame_t, COLOR_RGB2GRAY);
 
   //-- Step 1: Detect the keypoints using SURF Detector
   int minHessian = 800;
@@ -75,7 +75,7 @@ cv::Mat cameraMotionModel(cv::Mat frame_r, cv::Mat frame_t){
   }  
   else{
      // Compute Homography Between Reference and Test Frame
-     H = findHomography( reference, test, CV_RANSAC );
+     H = findHomography( reference, test, FM_RANSAC );
   }
 
   return H;

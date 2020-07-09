@@ -39,6 +39,9 @@ Outputs of update():
 #include <unistd.h>
 #include <iterator>
 #include <fstream>
+#include <opencv2/imgproc/imgproc_c.h>
+#include <opencv2/imgproc/types_c.h>
+#include <opencv2/highgui/highgui_c.h> 
 #endif
 
 using namespace cv;
@@ -684,9 +687,11 @@ cv::Mat KCFTracker::getFeatures(const cv::Mat & image, bool inithann, float scal
 
     // HOG features
     if (_hogfeatures) {
-        IplImage z_ipl = z;
+        // IplImage z_ipl = IplImage(z);
         CvLSVMFeatureMapCaskade *map;
-        getFeatureMaps(&z_ipl, cell_size, &map);
+        // getFeatureMaps(&z_ipl, cell_size, &map);
+        getFeatureMaps(z, cell_size, &map);
+
         normalizeAndTruncate(map,0.2f);
         PCAFeatureMaps(map);
         size_patch[0] = map->sizeY;
@@ -779,9 +784,11 @@ cv::Mat KCFTracker::getFeaturesWROI(const cv::Mat & image, bool inithann, float 
 
     // HOG features
     if (_hogfeatures) {
-        IplImage z_ipl = z;
+        // IplImage z_ipl = IplImage(z);
         CvLSVMFeatureMapCaskade *map;
-        getFeatureMaps(&z_ipl, cell_size, &map);
+        // getFeatureMaps(&z_ipl, cell_size, &map);
+        getFeatureMaps(z, cell_size, &map);
+        
         normalizeAndTruncate(map,0.2f);
         PCAFeatureMaps(map);
         size_patch_w_roi[0] = map->sizeY;
@@ -921,9 +928,11 @@ cv::Mat KCFTracker::getFeaturesScale(const cv::Mat &image, bool inithann, float 
 
     // HOG features
     if (_hogfeatures) {
-        IplImage z_ipl = z;
+        // IplImage z_ipl = IplImage(z);
         CvLSVMFeatureMapCaskade *map;
-        getFeatureMaps(&z_ipl, cell_size, &map);
+        // getFeatureMaps(&z_ipl, cell_size, &map);
+        getFeatureMaps(z, cell_size, &map);
+
         normalizeAndTruncate(map,0.2f);
         PCAFeatureMaps(map);
         size_patch_scale[0] = map->sizeY;
